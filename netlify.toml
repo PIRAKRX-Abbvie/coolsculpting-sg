@@ -1,0 +1,16 @@
+[Settings]
+  ID = "{Project}"
+
+[build]
+  functions = "functions/"
+  publish = "src"
+  command = "npm run build"
+
+[dev]
+  publish = "src"
+
+[[redirects]]
+  from = "/sc/api/FindClinic/GetICLClinicResults"
+  to = "https://pdcode-static-api.netlify.app/.netlify/functions/icl"
+  status = 200
+  force = true

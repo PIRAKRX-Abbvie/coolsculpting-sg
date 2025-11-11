@@ -1,0 +1,30 @@
+@font-face {
+    font-family: 'KanedaGothic-Light';
+    src: url('../../Fonts/KanedaGothic-Light.woff2') format('woff2'), url('../../Fonts/KanedaGothic-Light.woff') format('woff');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KanedaGothic-Medium';
+    src: url('../../Fonts/KanedaGothic-Medium.woff2') format('woff2'), url('../../Fonts/KanedaGothic-Medium.woff') format('woff');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KanedaGothic-Regular';
+    src: url('../../Fonts/KanedaGothic-Regular.woff2') format('woff2'), url('../../Fonts/KanedaGothic-Regular.woff') format('woff');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KanedaGothic-ExtraLightItalic';
+    src: url('../../Fonts/KanedaGothic-ExtraLightItalic.woff2') format('woff2'), url('../../Fonts/KanedaGothic-ExtraLightItalic.woff') format('woff');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'KanedaGothic-Regular';
+    src: url('../../Fonts/KanedaGothic-Regular.woff2') format('woff2'), url('../../Fonts/KanedaGothic-Regular.woff') format('woff');
+    font-display: swap;
+}
+ 

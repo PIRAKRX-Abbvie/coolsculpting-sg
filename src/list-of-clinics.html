@@ -1,0 +1,1183 @@
+
+
+
+<!DOCTYPE html>
+<html lang="EN-SG" data-lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+
+    <style>
+        html, body {
+            height: auto;
+            width: 100%;
+            padding: 0px;
+            overflow-x: hidden;
+        }
+
+        body {
+            position: relative;
+            max-width: 1440px;
+            margin: 0 auto;
+            background: #fff;
+            color: #75787b;
+            font-family: AvenirNextLTW01-Medium;
+            font-size: 16px;
+            line-height: 24px;
+            -ms-overflow-style: scrollbar;
+        }
+
+        .cookie-avl .cookie-wrapper {
+            display: table;
+        }
+
+        .cookie-wrapper {
+            display: none;
+            position: fixed;
+            max-width: 1440px;
+            margin: 0 auto;
+            top: 0px;
+            width: 100%;
+            padding: 10px 40px 8px;
+            text-align: left;
+            background-color: #00a4e0;
+            z-index: 9999;
+        }
+
+        .main-header {
+            position: fixed;
+            max-width: 1440px;
+            margin: 0 auto;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+        }
+
+        section, article {
+            width: 100%;
+            float: left;
+        }
+
+        article, aside, dialog, figure, footer, header, hgroup, nav, section {
+            display: block;
+        }
+
+            /*header {
+                height: 80px;
+            }*/
+
+            section intro-container {
+                height: 687px;
+            }
+
+            section image-map {
+                height: 688px;
+            }
+
+        .main-header .header-inner {
+            width: 20%;
+            float: left;
+        }
+
+        .main-header .nav-menu {
+            width: 80%;
+            display: block;
+            float: left;
+        }
+
+        .main-header ul.main-nav {
+            display: block;
+            width: auto;
+            /*margin-left: 30px;*/
+        }
+
+        .main-header .nav-menu ul li {
+            display: inline-block;
+            width: auto;
+            position: relative;
+            margin: 0;
+        }
+
+        .main-header ul.lan-select {
+            display: block;
+            width: auto;
+            /*margin: 15px 0px;*/
+            border-bottom: none;
+            float: right;
+            position: relative;
+            padding: 0px 20px;
+            text-align: center;
+        }
+
+
+        .main-header .nav-flexi .list-container .overlay {
+            position: absolute;
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #f4f4f4;
+            z-index: -9;
+        }
+
+        .main-header .order-2 {
+            order: 2;
+        }
+
+        .main-header .order-3 {
+            order: 3;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .intro-container .image-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .main-header .nav-flexi .list-container > .list-item {
+            display: none;
+        }
+
+
+        img[loading="lazy"] {
+            display: none;
+        }
+    </style>
+
+
+    <script>
+
+        var yViewableArea = window.innerHeight;
+        var imagePosi = 0;
+        function addLinktagforImage(val) {
+            var sc = document.createElement("link");
+            sc.setAttribute("href", val);
+            sc.setAttribute("rel", "preload");
+            sc.setAttribute("as", "image");
+            document.getElementsByTagName("head")[0].appendChild(sc);
+        }
+        function InitialImageload(img) {
+
+            //const images = document.querySelectorAll('img[loading="lazy"]');
+            if (img.getAttribute('datasrc') != undefined && img.src != img.getAttribute('datasrc') && img.getAttribute('loading') != undefined && img.getAttribute('loading') == "lazy") {
+                var device = "all";
+                if (window.innerWidth > 991) {
+                    device = "desktop";
+                }
+                else if (window.innerWidth > 767) {
+                    device = "tablet";
+                }
+                else {
+                    device = "mobile";
+                }
+
+                var BreakException = {};
+
+                try {
+
+
+
+                    if (img.getAttribute('device') != null && img.getAttribute('device') == 'all' && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        //setHeaderHight();
+                    }
+                    else if (img.getAttribute('device') != null && img.getAttribute('device').match('desktop') && device == "desktop" && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        //setHeaderHight();
+                    }
+                    else if (img.getAttribute('device') != null && img.getAttribute('device').match('tablet') && device == "tablet" && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        // setHeaderHight();
+                    }
+                    else if (img.getAttribute('device') != null && img.getAttribute('device').match('mobile') && device == "mobile" && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        //setHeaderHight();
+                    }
+                    else if (imagePosi >= yViewableArea) {
+                        throw BreakException;
+                    }
+                    dynamicHeight(img);
+
+                } catch (e) {
+                    if (e !== BreakException) throw e;
+                }
+            }
+
+        }
+
+        function ImageLazyload() {
+
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            if (images.length > 0) {
+                var device = "all";
+                if (window.innerWidth > 991) {
+                    device = "desktop";
+                }
+                else if (window.innerWidth > 767) {
+                    device = "tablet";
+                }
+                else {
+                    device = "mobile";
+                }
+
+                var BreakException = {};
+
+                try {
+
+                    for (var i = 0; i < images.length; i++) {
+                        var img = images[i];
+                        var yImagPosition = 0;
+                        const rect = img.getBoundingClientRect();
+                        yImagPosition = (rect.top != undefined ? rect.top : window.screenTop) + (window.scrollY != undefined ? window.scrollY : window.screenY);
+                        //console.log("------------------");
+                        //console.log("SRC : "+img.getAttribute("datasrc"));
+                        //console.log("DEVICE : " + img.getAttribute("device"));
+                        //console.log("yImagPosition : " + yImagPosition);
+                        //console.log("yViewableArea : " + yViewableArea);
+
+                        if (img.getAttribute('device') != null && img.getAttribute('device') == 'all' && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (img.getAttribute('device') != null && img.getAttribute('device').match('desktop') && device == "desktop" && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (img.getAttribute('device') != null && img.getAttribute('device').match('tablet') && device == "tablet" && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (img.getAttribute('device') != null && img.getAttribute('device').match('mobile') && device == "mobile" && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (yImagPosition >= yViewableArea) {
+                            throw BreakException;
+                        }
+
+                        dynamicHeight(img);
+
+
+                    }
+                } catch (e) {
+                    if (e !== BreakException) throw e;
+                }
+            }
+        }
+
+        function dynamicHeight(img) {
+
+            //if (img.parentElement != undefined && img.parentElement.parentElement != undefined &&
+            //    img.parentElement.parentElement.parentElement != undefined && img.parentElement.parentElement.parentElement.parentElement != undefined &&
+            //    img.parentElement.parentElement.parentElement.parentElement.getAttribute("class") != null &&
+            //    img.parentElement.parentElement.parentElement.parentElement.getAttribute("class").startsWith('overview-container')) {
+
+            //    if (window.innerWidth > 991) {
+
+            //        var height = img.parentElement.nextElementSibling.offsetHeight > img.parentElement.offsetHeight ? img.parentElement.nextElementSibling.offsetHeight : img.parentElement.offsetHeight;
+            //        img.parentElement.setAttribute('style','height:'+height+'px;')
+            //        img.parentElement.nextElementSibling.setAttribute('style','height:'+height+'px;')
+            //        img.setAttribute('style', 'height:'+height+'px;')
+            //    }
+            //    else {
+            //        img.parentElement.setAttribute('style', img.parentElement.getAttribute('style') + 'height:auto;')
+            //        img.parentElement.nextElementSibling.setAttribute('style', img.parentElement.nextElementSibling.getAttribute('style') + 'height:auto;')
+            //        img.setAttribute('style', 'height:auto;')
+            //    }
+
+            //}
+        }
+
+        //window.addEventListener('DOMContentLoaded', function () {
+        //    window.scrollBy(0, 1);
+        //});
+        function loadListeners() {
+
+            window.addEventListener('resize', function () {
+                ImageLazyload();
+            });
+
+            window.addEventListener('scroll', function () {
+                yViewableArea = window.innerHeight + (window.scrollY != undefined ? window.scrollY : window.screenY);
+                ImageLazyload();
+                //setHeaderHight();
+            });
+
+            window.addEventListener('load', function () {
+                ImageLazyload();
+            });
+        }
+
+        loadListeners();
+        //$(document).ready(function () {
+        //    alert('test');
+        //    ImageLazyload();
+        //})
+
+
+    </script>
+
+    <link rel="preload" href="Images/blank-image2125.png?la=en" as="image" />
+
+
+        <!--Fonts for other then Australia-->
+        <link rel="preload" as="style" href="https://fast.fonts.net/cssapi/d12edc21-ced2-4219-94d9-f1987474ceda.css?display=swap" />
+        <link rel="preload" as="style" href="https://fast.fonts.net/cssapi/53fb3da4-bd03-40d5-9010-1fae680aed4b.css?display=swap" />
+        <link rel="preload" as="style" href="https://fast.fonts.net/cssapi/64a0ca88-fff0-48dc-8e2e-9b11887c8207.css?display=swap" />
+                    
+                <link rel="stylesheet" href="Styles/Coolsculpting/FontReferenceStatic.css" />
+<link href="-/media/allergan-themes/theme/common/bootstrapmin.css" rel="stylesheet" type="text/css" /><link href="-/media/allergan-themes/theme/coolsculpting/custom/jquerybxslidermin.css" rel="stylesheet" type="text/css" /><link href="-/media/allergan-themes/theme/coolsculpting/bundles/minify/MinifiedFile161221050815.css" rel="stylesheet" type="text/css" /><script defer type="text/javascript" src="-/media/allergan-themes/script/common/jquery-214min.js" /></script>            <meta name="description" content="Find out the list of certified CoolSculpting clinic in Singapore and talk to an expert to discuss about your treatment plan.">
+            <title>Find out the list of certified CoolSculpting clinic in Singapore and talk to an expert to discuss about your treatment plan.</title>
+        <link rel="dns-prefetch" href="https://www.coolsculpting.sg/">
+        <link rel="preconnect" href="https://www.coolsculpting.sg/">
+        <link rel="canonical" href="https://www.coolsculpting.sg/list-of-clinics">
+
+                <link rel="icon" href="-/media/project/coolsculpting/page/favicon.ico" />
+        <script>
+        (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var
+            f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src
+                =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KSQJDHS');</script>
+
+
+
+<link rel ='alternate' href = 'https://www.coolsculpting.sg/list-of-clinics' hreflang = 'x-default' />
+<link rel = 'alternate' href = 'https://sg.coolsculpting.com/list-of-clinics' hreflang = 'en-sg' />
+<link rel = 'alternate' href = 'https://www.yosoycool.es/listado-de-clinicas' hreflang = 'es-es' />
+<link rel = 'alternate' href = 'https://www.freezefattostaycool.com/clinics-list' hreflang = 'en-th' />
+<link rel = 'alternate' href = 'https://www.freezefattostaycool.com/th/รายชื่อคลินิค' hreflang = 'th-th' />
+<link rel = 'alternate' href = 'https://la.coolsculpting.com/en/clinics-list' hreflang = 'en-la' />
+<link rel = 'alternate' href = 'https://la.coolsculpting.com/lista-de-clinicas' hreflang = 'es-la' />
+<link rel = 'alternate' href = 'https://ca.coolsculpting.com/clinics-list' hreflang = 'en-ca' />
+<link rel = 'alternate' href = 'https://ca.coolsculpting.com/fr/pour-les-professionnels-de-la-sante' hreflang = 'fr-ca' />
+<link rel = 'alternate' href = 'https://in.coolsculpting.com/clinics-list' hreflang = 'en-in' />
+<link rel = 'alternate' href = 'https://www.coolsculpting.com.au/clinics-list' hreflang = 'en-au' />
+<link rel = 'alternate' href = 'https://br.coolsculpting.com/lista-de-clinicas' hreflang = 'pt-br' />
+<link rel = 'alternate' href = 'https://dk.coolsculpting.com/se-liste-over-alle-klinikker' hreflang = 'da-dk' />
+<link rel = 'alternate' href = 'https://fi.coolsculpting.com/katso-luettelo-kaikista-klinikoista' hreflang = 'fi-fi' />
+<link rel = 'alternate' href = 'https://de.coolsculpting.com/kliniken-liste' hreflang = 'de-de' />
+<link rel = 'alternate' href = 'https://hk.coolsculpting.com/en/clinics-list' hreflang = 'hk-en' />
+<link rel = 'alternate' href = 'https://hk.coolsculpting.com/诊所名单' hreflang = 'zh-hk' />
+<link rel = 'alternate' href = 'https://it.coolsculpting.com/elenco-cliniche' hreflang = 'it-it' />
+<link rel = 'alternate' href = 'https://my.coolsculpting.com/clinics-list' hreflang = 'en-my' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-bh' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-eg' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-ir' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-jo' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-kw' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-ma' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-qa' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-sa' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-ae' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-tn' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-om' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/clinics-list' hreflang = 'en-lb' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-bh' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-eg' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-ir' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-jo' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-kw' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-lb' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-ma' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-om' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-qa' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-sa' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-tn' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fa/clinics-list' hreflang = 'fa-ae' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-bh' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-eg' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-ir' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-jo' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-lb' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-kw' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-ma' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-om' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-qa' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-sa' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-tn' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/fr/clinics-list' hreflang = 'fr-ae' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-eg' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-ir' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-jo' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-bh' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-kw' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-lb' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-ma' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-om' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-qa' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-sa' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-tn' />
+<link rel = 'alternate' href = 'https://me.coolsculpting.com/ar/clinics-list' hreflang = 'ar-ae' />
+<link rel = 'alternate' href = 'https://mx.coolsculpting.com/en/clinics-list' hreflang = 'en-mx' />
+<link rel = 'alternate' href = 'https://mx.coolsculpting.com/lista-de-clinicas' hreflang = 'es-mx' />
+<link rel = 'alternate' href = 'https://nl.coolsculpting.com/lijst-met-klinieken' hreflang = 'nl-nl' />
+<link rel = 'alternate' href = 'https://no.coolsculpting.com/se-liste-over-alle-klinikker' hreflang = 'no-no' />
+<link rel = 'alternate' href = 'https://pl.coolsculpting.com/lista-klinik' hreflang = 'pl-pl' />
+<link rel = 'alternate' href = 'https://www.coolsilhueta.pt/clinicas-que-oferecem-o-tratamento' hreflang = 'pt-pt' />
+<link rel = 'alternate' href = 'https://se.coolsculpting.com/se-lista-over-alla-kliniker' hreflang = 'sv-se' />
+<link rel = 'alternate' href = 'https://www.cooltofit.com/kliniklerin-listesi' hreflang = 'tr-tr' />
+<link rel = 'alternate' href = 'https://uk.coolsculpting.com/clinics-list' hreflang = 'en-gb' />
+<link rel = 'alternate' href = 'https://za.coolsculpting.com/clinics-list' hreflang = 'en-za' />
+
+
+
+
+
+    <script>
+        var siteDefaultLanguage = 'en';
+        
+
+ var supportLowercaseURL = false;
+
+        var removeDefaultLanguage =0;
+        if (removeDefaultLanguage == 1) {
+            removeDefaultLanguage = true;
+        }
+        else {
+            removeDefaultLanguage = false;
+        }
+    </script>
+
+
+        <!--Fonts for other then Australia-->
+        <link rel="stylesheet" href="https://fast.fonts.net/cssapi/d12edc21-ced2-4219-94d9-f1987474ceda.css?display=swap" />
+        <link rel="stylesheet" href="https://fast.fonts.net/cssapi/53fb3da4-bd03-40d5-9010-1fae680aed4b.css?display=swap" />
+        <link rel="stylesheet" href="https://fast.fonts.net/cssapi/64a0ca88-fff0-48dc-8e2e-9b11887c8207.css?display=swap" />
+                    
+                <script defer rel="preload" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALkGGfcTisYYtZuo-kd-vY2mQ3oDUuWEQ&amp;channel=CoolSculpting-SG&amp;libraries=places"></script>
+<script defer type="text/javascript" src="-/media/allergan-themes/script/common/angularmin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/common/angular-routemin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/common/angular-cookiesmin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/common/angular-filter.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/bundles/minify/MinifiedFile070922105854.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/common/bootstrapmin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/custom/modalVideomin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/custom/mapsvgmin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/custom/jquerynicescrollmin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/custom/jquerybxslidermin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/custom/player.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/common/AgnProjectCoolsculptingjquerygeocompletemin.js" /></script>    </head>
+<body class="en SingaporeCoolsculpting"  pagename="ClinicsList" data-imglazyload="1" enablelanguagecodeupdate="True">
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSQJDHS"
+                    height="0" width="0"
+                    style="display:none;visibility:hidden"></iframe>
+        </noscript>
+
+
+                    <div id="settings-site" data-isEEditor="0">
+                    <div id="settings-geolocation" data-geolocationapi=https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAltuYszRmFVsQ6SIQv6O7UYvITwc57dd0>
+                    </div>
+                    <div id="settings-countrycode" data-country=SG>
+                    </div>
+                    <div id="settings-countrycodefilter" data-countries="SG">
+                    </div>
+                    <div id="settings-countryname" data-countryname="Singapore">
+                    </div>
+                    <div id="settings-unbranded" data-unbranded="False">
+                    </div>
+                    <div id="settings-isgdpr" data-gdpr="False">
+                    </div>
+                    <div id="settings-isdistanceinkm" data-distanceinkm="False">
+                    </div>
+                    <div id="settings-isradius" data-radius="7">
+                    </div>
+                    
+                    <div id="settings-SFGlobalcliniclocator" data-ICLApproach="1">
+                    </div>
+                    <div id="settings-ICLDistance" data-icldistancevalue="">
+                    </div>
+                    <div id="settings-ICLCountryCode" data-ICLCountryCodevalue="SG">
+                    </div>
+                    <div id="settings-ICLClustercountrycode" data-Clustercountrycodevalue="">
+                    </div>
+                    <div id="settings-ImageLazyload" data-ImageLazyload="1">
+                    </div>
+
+                </div>
+
+    <!--  Start Sitecore Jquery Issues Conflict -->
+    <script>
+        if (typeof jQuery != 'undefined' && jQuery.fn.jquery == "1.5.1") {
+            jQuery.noConflict(true);
+        }
+    </script>
+    <!--  End Sitecore Jquery Issues Conflict -->
+    <div ng-app="allerganApp" class="ng-coolsculpting">
+        <!--Start: Cookie Policy Section-->
+        <section cookie class="ng-scope">
+                        
+            
+            
+            
+        </section>
+        <!--End: Cookie Policy Section-->
+        <!--Start: Header Section-->
+
+        <section header class="ng-scope">
+            <header class="main-header clearfix " role="banner">
+                <div class="header-inner">
+                        <div class="header exp-editor">
+<a href="/" class="logo ft-left" ><img src="Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="desktop" datasrc="/-/media/project/coolsculpting/homepage/logo-coolsculp-dt.png" alt="CoolSculpting-logo-coolsculp-dt" class="hidden-xs hidden-sm" /><img src="Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="tablet" datasrc="/-/media/project/coolsculpting/homepage/logo-coolsculp-dt.png" alt="CoolSculpting-logo-coolsculp-dt" class="hidden-xs hidden-md hidden-lg" /><img src="Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="mobile" datasrc="/-/media/project/coolsculpting/homepage/logo-coolsculp-dt.png" alt="CoolSculpting-logo-coolsculp-dt" class="hidden-sm hidden-md hidden-lg" /></a>        
+
+
+        <a href="javascript:void(0);" aria-expanded="false" role="button" aria-label="toggle navigation" data-ng-class="{active: active}" data-ng-click="active =!active;menuToggled();" class="btn menu-btn ft-right">
+                <span class="sr-only">Navigation menu</span>
+            <div data-ng-hide="active" class="burger-menu ft-left">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+<img src="Images/blank-image2125.png?la=en" dataheight="24" src="#" Class="close-toggle" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/logo/close.png" data-ng-show="active" alt="CoolSculpting-close" />
+
+        </a>
+    </div>
+
+                </div>
+                <div class="nav-menu" role="navigation">
+                        <ul class="ft-left main-nav order-2 nav-flexi " role="menubar">
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="/what-is-coolsculpting" Class="nav-title" aria-expanded="false" aria-haspopup="true" >What is CoolSculpting&reg;?</a>                                
+<a href="/what-is-coolsculpting" ng-click="navigateNxt($event);" Class="list-item first-item-menu" >What is CoolSculpting&reg;?</a>                                                            </li>
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="javascript:void(0);" Class="nav-title" aria-expanded="false" aria-haspopup="true" >Results<img src="-/media/project/coolsculpting/navigation/icon-drop.png?h=24&amp;w=24&amp;la=en&amp;hash=4E087C3BCE2F27D6593B70EEDE5EB75D6014D643" alt="CoolSculpting-icon-drop" /></a>                                
+<a href="javascript:void(0);" ng-click="navigateNxt($event);" Class="list-item" >Results</a>                                                                    <ul class="sub-menu dropdown-content">
+                                                <li>
+
+<a href="/what-to-expect" ng-click="navigateNxt($event);" Class="list-item" >                                                 <!--inner Navigation Menu DisplayName-->
+What to expect</a>
+                                        </li>
+                                                <li>
+
+<a href="/harpersbazaar-coolsculpting" target="_blank" Class="list-item" ng-click="navigateNxt($event);" >                                                 <!--inner Navigation Menu DisplayName-->
+News Press: Harper’s Bazaar</a>
+                                        </li>
+                                </ul>
+                            </li>
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="/how-it-works" Class="nav-title" aria-expanded="false" aria-haspopup="true" >How it works</a>                                
+<a href="/how-it-works" ng-click="navigateNxt($event);" Class="list-item first-item-menu" >How it works</a>                                                            </li>
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="/faq" Class="nav-title" aria-expanded="false" aria-haspopup="true" >FAQs</a>                                
+<a href="/faq" ng-click="navigateNxt($event);" Class="list-item first-item-menu" >FAQs</a>                                                            </li>
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="/before-after-gallery" Class="nav-title" aria-expanded="false" aria-haspopup="true" >Before &amp; After Gallery</a>                                
+<a href="/before-after-gallery" ng-click="navigateNxt($event);" Class="list-item first-item-menu" >Before &amp; After Gallery</a>                                                            </li>
+    </ul>
+
+                    
+
+                        <ul class="cta-group order-1 " role="menubar">
+                    <li role="menuitem">
+<a href="/clinic-list" onclick="dataLayer.push({'buttonLocation': 'Header','event': 'findProviderClicked'});" Class="btn cta" ><img src="Images/blank-image2125.png?la=en" dataheight="24" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/map-pin.png" alt="CoolSculpting-map-pin.png" />                                    <span>
+                                        Find Certified Clinic List
+                                    </span>
+<img src="-/media/project/coolsculpting/navigation/icon-drop.png?h=24&amp;w=24&amp;la=en&amp;hash=4E087C3BCE2F27D6593B70EEDE5EB75D6014D643" class="icon-nav" alt="CoolSculpting-icon-drop" /></a>                    </li>
+    </ul>
+
+                </div>
+            </header>
+            <div class="sticky-header "></div>
+        </section>
+        <!--End: Header Section-->
+        <!--Layout Changes: Start-->
+        <main>
+            <section>
+    
+    <section clinic-locator >
+        <div id="clinic-search"  data-showphbtn="False" data-hidewebsitelink="False" class="clinic-wrapper" data-zoom-level="4" ng-init="initClinicLocator(6,false);" data-hideclinicinfo="False">
+                <div ng-show="loader" id="loadingDiv">
+
+                    <img src="-/media/project/coolsculpting/findclinic/LoadingSpinnerImage6728.gif?h=100&amp;w=100&amp;la=en&amp;hash=E6435EFBDED13C0548A546F31F279A9F623B5A7F" Class="v-center" alt="LoadingSpinnerImage" />
+
+                </div>
+                            <div class="clinic-wrapper-inner">
+                    <div class="block-inner">
+                        <div class="clinic-header txt-center">
+                                <h1 class="clinic-title">Find a clinic</h1>
+                                                            <p class="clinic-desc">
+                                    <p class="allclinic-desc">                                     Note: Allergan Aesthetics is providing the following list of clinics (in alphabetical order) which provide CoolSculpting treatments in Singapore, upon your request.   <br><br> This website is not affiliated to any of the clinics in the list below. Allergan Aesthetics does not endorse, certify or otherwise promote the skills, capabilities, qualifications, credentials, expertise and experience of any clinical practice and/or healthcare professional in particular.                                 </p></br></br><p class="clinic-desc">Use your current location or search for a postcode or town.</p>
+                                </p>
+                            <div class="clinic-search clearfix">
+                                <div class="search-wrap">
+                                    <a href="javascript:void(0);" ng-click="curLocSelect();" class="btn-cs loc-cs" onclick="onclick=dataLayer.push({&#39;event&#39;: &#39;searchPerformedCurrentLocation&#39; });" role="button">
+                                            <span class="btn-text">Use my location</span>
+                                                                                    <span class="ft-right">
+                                                <img src="-/media/project/coolsculpting/findclinic/map-pinf6b9.svg?la=en&amp;hash=53C1E6627EE91FA4EABE16C367C9486E93D9479C" Class="" alt="CoolSculpting-map-pin.png" />
+                                            </span>
+                                    </a>
+                                </div>
+                                <div class="search-wrap" role="search">
+                                    <div class="input-group ">
+                                        <label for="search" class="sr-only">Enter city or postcode</label>
+                                        <input ng-init="disableIECloseIcon()" ng-focus="fninitializeautocomplete()" type="text" id="search" ng-model="srchTerm" ng-keypress="searchClinic($event);" class="form-control find-clinic-input search-loc" placeholder="Enter city or postcode" autocomplete="off">
+                                                                            </div>
+                                </div>
+                            </div>
+                            
+                                <div class="clinic-search clearfix paddb">
+                                    <div class="search-wrap">
+                                        <a id="fcSearchIcon" href="javascript:void(0);" ng-click="searchIconClick();" class="btn-cs loc-cs padd10" onclick="dataLayer.push({'searchTerm':$('.find-clinic-input').val(),'event':'searchPerformed'});" role="button">
+                                            <span class="btn-text fcsearchbutton">Search</span>
+                                            <span class="ft-right">
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            <div class="cl-anchors" data-nav="quick-search">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                        <div id="mapView"></div>
+            
+            <div id="" class="clinicInfo-wrapper clearfix">
+                <div class="block-inner">
+                    <div class="clinicInfo-inner clearfix" data-nav="individual-clinic">
+                                    <div ng-show="countrySelected" class="ci-info">
+                                        <p>{{count}} CoolSculpting® clinics found near {{location}}</p>
+                                    </div>
+                        <!-- Experience Editor -->
+                            <div role="list">
+                                <div class="clinicInfo-item col-xs-12 col-sm-6 col-md-4" role="listitem" ng-repeat="info in locationRecords[0] | limitTo: locationLimit !=0 ? locationLimit : none">
+                                    <div class="clinicItem-wrapper">
+                                        <div style="height:20px;" ng-show="showsnowflakediv">
+                                                                                        
+
+                                        </div>
+
+                                        <div class="clinicInfo-title clearfix">
+                                            <div class="pin-info col-xs-3">
+                                                <span class="pin">
+<img src="-/media/project/coolsculpting/findclinic/map-pin-number.png?h=29&amp;w=24&amp;la=en&amp;hash=93D2D6F76556EE6C4C06278EEA8E9F0137C661D7" Class="" alt="CoolSculpting-map-pin.png-number" />                                                    <span class="pin-marker">{{$index+ 1}}</span>
+                                                </span>
+                                            </div>
+                                                <a href="javascript:void(0)" style="cursor:unset" ng-if="info.name" class="ci-title col-xs-9">{{info.name}}</a>
+
+                                        </div>
+                                        <div class="col-md-offset-3 clinicInfo-address ">
+                                            <span ng-if="info.physician" class="physician mar_bt10">{{info.physician}}</span>
+                                            <address ng-if="info.address" class="address mar_bt10">{{info.address}}</address>
+
+                                                <a ng-if="info.phone" href="tel:{{info.phone}}" class="mar_bt10 phone" aria-describedby="{{'clinic-name-' + $index+ 1}}" onclick=dataLayer.push({&#39;clinicName&#39;:$(this).closest(&#39;.clinicInfo-item&#39;).find(&#39;.ci-title&#39;).text(),&#39;clinicAddress&#39;:$(this).closest(&#39;.clinicInfo-item&#39;).find(&#39;.address&#39;).text(),&#39;event&#39;:&#39;clinicClickToCall&#39;});>
+                                                    <span aria-hidden="true">T:</span>
+                                                    <span class="sr-only">telephone</span>{{info.phone}}
+                                                    <span class="sr-only">opens a dialog</span>
+                                                </a>
+                                                <a ng-if="info.email" href="cdn-cgi/l/email-protection.html#4b303022252d24652e262a22273636" aria-describedby="{{'clinic-name-' + $index+ 1}}" onclick=dataLayer.push({&#39;clinicName&#39;:$(this).closest(&#39;.clinicInfo-item&#39;).find(&#39;.ci-title&#39;).text(),&#39;clinicAddress&#39;:$(this).closest(&#39;.clinicInfo-item&#39;).find(&#39;.address&#39;).text(),&#39;event&#39;:&#39;clinicClickToEmail&#39;});>
+                                                    <span class="sr-only">email</span>{{info.email}}
+                                                    <span class="sr-only">opens a mail dialog</span>
+                                                </a>
+                                            <!--a href="javascript:void(0);" target="_blank" class="info-wrap">
+                                                <span class="moreInfo"> more info</span>
+                                                <img src="media/svg/chevron-right_bl.svg" alt="moreInfo link">
+                                            </a-->
+                                        </div>
+                                            <div class="clinicInfo-footer ">
+                                                <a href="{{info.website}}" target="_blank" class="ci-website" ng-class="{disable: !info.website}" ng-click="openWebsite($event)" aria-describedby="{{'clinic-name-' + $index+ 1}}" onmousedown="toggleDataLayerInfo(this)" onclick=dataLayer.push({&#39;clinicName&#39;:$(this).closest(&#39;.clinicInfo-item&#39;).find(&#39;.ci-title&#39;).text(),&#39;clinicAddress&#39;:$(this).closest(&#39;.clinicInfo-item&#39;).find(&#39;.address&#39;).text(),&#39;event&#39;:&#39;clinicVisitWebsite&#39;});>
+Visit Website                                                    <span class="sr-only">opens in new window {{info.name}}</span>
+<img src="-/media/project/coolsculpting/findclinic/circle-arrow097a.svg?la=en&amp;hash=848B76726000C1FFF25EE1914CF9C7B271FE5133" Class="mar_tp5 ft-right" alt="CoolSculpting-circle-arrow" />                                                </a>
+                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+
+
+                        <div ng-show="countrySelected && !toggleButtonState" class="btn-cs-wrapper txt-center ">
+                            <a href="javascript:void(0);" ng-click="loadMoreLocation();" role="button" class="btn-cs load-more">
+                                    <span class="btn-text">Load more</span>
+                                <img src="-/media/project/coolsculpting/findclinic/icon-plusd6b0.svg?h=24&amp;w=24&amp;la=en&amp;hash=9680A006839D6C8F2BC68E69EAE534A1F35A2A3C" Class="icon-plus ft-right" alt="CoolSculpting-icon-plus" />                            </a>
+                        </div>
+
+                        <div id="" class="txt-center all-clinics-wrapper" data-nav="list-of-clinics">
+                            <a href="javascript:void(0);" ng-click="showallClinics();" class="allclinics-lnk" onclick="onclick=dataLayer.push({&#39;event&#39;: &#39;listClinicsClicked&#39; });">
+                                    <span class="">
+                                        See list of all clinics
+                                    </span>
+                                <img src="-/media/project/coolsculpting/findclinic/chevron-right_bl0634.svg?h=24&amp;w=24&amp;la=en&amp;hash=56A6460AD13B4B2EA09111E3EEC87DBAAA4254CE" Class="" alt="CoolSculpting-chevron-right_bl" />                            </a>
+                        </div>
+
+                </div>
+            </div>
+            <div class="hidden">
+                    <div id="markerIcon" data-src="/-/media/project/coolsculpting/findclinic/marker-icon.png"></div>
+                                    <div id="map-web-icon" data-icon="/-/media/project/coolsculpting/findclinic/chevron-right_bl.svg"></div>
+                                    <div id="markerImage" data-src="/-/media/project/coolsculpting/findclinic/map-pin-number.png"></div>
+                                    <div id="Apigeolocationerr">API GEOLOCATION ERROR!</div>
+                                    <div id="GeoLocationAPINoResultText">No data available for this city</div>
+                                    <div id="searchErr">PLEASE ENTER VALID CITY OR ZIP CODE</div>
+                                    <div id="link-text">Visit Website</div>
+                
+            </div>
+			
+            <div class="modal fade" id="errorModal" role="dialog" style="display: none;">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                                <h4 class="modal-title">Error</h4>
+                        </div>
+                            <div class="modal-body body-style1">PLEASE ENTER VALID CITY OR ZIP CODE</div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+        <script data-cfasync="false" src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+            if (document.querySelector('#clinic-search').children[1].className == "clinic-wrapper-inner") {
+                document.querySelector('#clinic-search').children[1].style.display = "none";
+            }
+            document.getElementsByClassName("ci-info")[0].style.display = "none";
+            document.getElementsByClassName("txt-center all-clinics-wrapper")[0].style.display = "none";
+            //document.getElementById('mapView').style.display = "none";
+            if (window.location.href.split('?')[1] != undefined) {
+                document.getElementsByClassName('allsearch-wrap')[0].style.display = "none";
+                document.getElementsByClassName('allclinic-desc')[0].style.display = "block";
+            }
+
+        </script>
+
+
+    <section title-description class="ng-scope">
+        <div class="pagetitle-container">
+                <h1 class="pagetitle">
+                    CoolSculpting<sup>&reg;</sup> treatment providers
+                </h1>
+                            <p class="pagetitle_desc">
+                    Note: Allergan Aesthetics is providing the following list of clinics (in alphabetical order) which provide CoolSculpting treatments in Singapore, upon your request.
+<br><br>
+This website is not affiliated to any of the clinics in the list below. Allergan Aesthetics does not endorse, certify or otherwise promote the skills, capabilities, qualifications, credentials, expertise and experience of any clinical practice and/or healthcare professional in particular.
+                </p>
+        </div>
+    </section>
+    <section all-clinics>
+        <div class="cs-clinics-view">
+                <div ng-show="loader" id="loadingDiv">
+
+                    
+                    <img src="-/media/project/coolsculpting/findclinic/LoadingSpinnerImage6728.gif?h=100&amp;w=100&amp;la=en&amp;hash=E6435EFBDED13C0548A546F31F279A9F623B5A7F" Class="v-center" alt="LoadingSpinnerImage" />
+
+                </div>
+            
+            <div class="block-inner">
+                <ul role="list" class="clinic-list-wrapper" data-nav="individual-clinic">
+                    <li role="listitem" ng-repeat="item in clinics" class="clinic-list-item">
+                        
+                            <a href="javascript:void(0)" data-flake="{{item.snowflake}}" target="" ng-click=setURLparam($event,item) class="list-item">
+                                {{item.clinicName}}
+                                <span class="sr-only">
+                                    opens in new window
+                                </span>
+                            </a>
+                                <img ng-if="item.snowflake == 1" width="30" height="30" src="-/media/project/coolsculpting/findclinic/CS_Snowflake_GOLD.png" />
+                                <img ng-if="item.snowflake == 2" width="30" height="30" src="-/media/project/coolsculpting/findclinic/CS_Snowflake_SILVER.png" />
+                                <img ng-repeat="n in [] | range:item.coolsculptingimage" width="30" height="30" src="-/media/project/coolsculpting/findclinic/CS_Snowflake_MACHINE.png" />
+
+
+                    </li>
+                </ul>
+            </div>
+            <div class="hidden">
+                    <div id="Apigeolocationerr">API GEOLOCATION ERROR!</div>
+                                    <div id="searchErr">PLEASE ENTER VALID CITY OR ZIP CODE</div>
+            </div>
+            <div class="modal fade" id="errorModal" role="dialog" style="display: none;">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h4 class="modal-title">Error</h4>
+                        </div>
+                            <div class="modal-body body-style1">PLEASE ENTER VALID CITY OR ZIP CODE</div>
+                        <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="cs-model" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" role="document">
+                <div class="modal-header">
+                        <div class="cs-close-wrap" tabindex="0">
+<img src="-/media/project/coolsculpting/navigation/close6eb7.png?h=24&amp;w=24&amp;la=en&amp;hash=B9539B9D19DA2499438348F05366BC216206305C" Class="close" data-dismiss="modal" alt="Close" />    </div>
+        <p class="modal-title">
+            This website is intended for people who reside in Singapore only.  If you want to view another website please choose from the list below:
+        </p>
+
+                </div>
+                <div class="modal-body">
+                            <div class="modal-body">
+            <div class="cs-wrapper">
+                <ul>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://uk.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'United Kingdom','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/gb.png" alt="testing" />                                        <span class="cs-text">
+                                            UK
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://fi.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Finland','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/finland-flag.jpeg" alt="testing" />                                        <span class="cs-text">
+                                            Finland
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://hk.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Hongkong','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/HongKong.png" alt="testing" />                                        <span class="cs-text">
+                                            Hong Kong
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://in.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'India','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/India.png" alt="testing" />                                        <span class="cs-text">
+                                            India
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://jp.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/Japan.jpeg" alt="testing" />                                        <span class="cs-text">
+                                            Japan
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://my.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Malaysia','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/Malaysia.png" alt="testing" />                                        <span class="cs-text">
+                                            Malaysia
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://no.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Norway','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/norway.jpeg" alt="testing" />                                        <span class="cs-text">
+                                            Norway
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://pl.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Poland','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/Poland_Flag.png" alt="testing" />                                        <span class="cs-text">
+                                            Poland
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://www.coolsculpting-france.com/" onclick="dataLayer.push({'countryName': 'France','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/fr.png" alt="testing" />                                        <span class="cs-text">
+                                            France
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://de.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Germany','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/de.png" alt="testing" />                                        <span class="cs-text">
+                                            Germany
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://br.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Brazil','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/br.png" alt="testing" />                                        <span class="cs-text">
+                                            Brazil
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://www.coolsculpting.com.cn/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'China','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/cn.png" alt="testing" />                                        <span class="cs-text">
+                                            China
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://www.coolsculpting.kr/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Korea','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/kr.png" alt="testing" />                                        <span class="cs-text">
+                                            Korea
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://dk.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Netherlands','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/denmark.jpeg" alt="testing" />                                        <span class="cs-text">
+                                            Denmark
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://nl.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Netherlands','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/nl.png" alt="testing" />                                        <span class="cs-text">
+                                            Netherlands
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://coolsculpting.se/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Sweden','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/se.png" alt="testing" />                                        <span class="cs-text">
+                                            Sweden
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://coolsculpting.com.au/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Australia','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/au.png" alt="testing" />                                        <span class="cs-text">
+                                            Australia
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://coolsculpting.ca/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Canada','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/ca.png" alt="testing" />                                        <span class="cs-text">
+                                            Canada
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://www.coolsculpting.com/" onclick="dataLayer.push({'countryName': 'USA','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/us.png" alt="testing" />                                        <span class="cs-text">
+                                            USA
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://za.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'South Africa','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/za.png" alt="testing" />                                        <span class="cs-text">
+                                            South Africa
+                                        </span>
+</a>                            </li>
+                </ul>
+            </div>
+        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <section links class="ng-scope">
+        <div class="link-container">
+            <ul class="block-inner">
+                
+            </ul>
+        </div>
+    </section>
+</section>
+    <div class="modal fade" id="gnmodelpopup">
+        <div class="modal-dialog" role="dialog" tabindex="">
+            <div class="modal-content" role="document">
+
+                <div class="main container" style="height: auto;">
+                    <div class="raw">
+                        <div class="main-container" style="margin: auto; top: auto;">
+                            <div class="w-cover hcp-popup">
+                                
+                                <h1 class="m40">
+                                </h1>
+                                <div class="bottom-text">
+                                </div>                              
+
+
+                                    <span class="cursor-md">
+                                        
+                                    </span>
+
+
+                                    <span class="cursor-md">
+                                        
+                                    </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+            
+        </main>
+
+        <!--Start: Country Selection-->
+        <section country-selection class="ng-scope">
+                    <div id="cs-model" class="modal fade in" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content" role="document">
+                    <div class="modal-header">
+                        <div class="cs-close-wrap">
+                        </div>
+
+                    </div>
+                    <div class="modal-body">
+                        <div class="cs-wrapper">
+                            <ul>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </section>
+        <!--End: Country Selection-->
+        <!-------------------------------------------------------------------------------------->
+        <!--Start: Footer Section-->
+        <section footer class="ng-scope">
+            <footer class="footer-section" role="contentinfo">
+                <div class="clinic-loc">
+                    <div class="block-inner">
+                        
+                    </div>
+                </div>
+                <div class="footer-inner clearfix">
+                    <div class="block-inner">
+                        <div class="footer-sec2">
+                            <a href="https://www.allerganaesthetics.com/" class="ws-logo" target="_blank" ><img src="Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/homepage/webp/allerganaesthetics_logo_black.png" alt="" />                <span class="sr-only"></span>
+</a>        <p class="footer-logo-info">Made by Allergan, world leader in medical aesthetics</p>
+
+                        </div>
+                        <div class="footer-sec1">
+                                <div class="sec-inner section-links">
+        <ul class="footer-links">
+                        <li>
+<a href="https://www.abbvie.com.sg/privacy.html" Class="icon-link" aria-label="Privacy Policy" target="_blank" >Privacy Policy</a>                        </li>
+                        <li>
+<a href="https://www.abbvie.com/terms-of-use.html" Class="icon-link" aria-label="Terms and Conditions" target="_blank" >T&amp;C's</a>                        </li>
+                        <li>
+<a href="/disclaimers" aria-label="Disclaimers" Class="icon-link" >Disclaimers</a>                        </li>
+                        <li>
+<a href="/sitemap" aria-label="Site map" Class="icon-link" >Site Map</a>                        </li>
+                        <li>
+<a href="/contact-us" aria-label="Contact us" Class="icon-link" >Contact us</a>                        </li>
+                        <li>
+<a href="https://coolnet.force.com/CoolNetLogin?inst=0W" aria-label="For Physicians" Class="icon-link" >For Physicians<img src="Images/blank-image2125.png?la=en" dataheight="24" src="#" Class="icon-link" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/logo/hcplinklogo.png" alt="CoolSculpting-HCPLinkLogo" /></a>                        </li>
+                        <li>
+<a href="/locator-terms-conditions-of-use-disclaimer" aria-label="Clinic Locators Terms of Use & Disclaimer" Class="icon-link" >Clinic Locators Terms of Use & Disclaimer</a>                        </li>
+                        <li>
+<a href="javascript:void(0)" class="ot-sdk-show-settings" Class="icon-link" aria-label="" title="Overridden by OneTrust" >Cookie Settings</a>                        </li>
+        </ul>
+    </div>
+
+
+                            <div class="sec-inner country-select clearfix">
+                                
+                                            <p class="info-text">This site is intended for Singapore audience only.  <br /><br /></p>
+<a href="javascript:void(0);" data-toggle="modal" Class="country-change" role="button" onclick="dataLayer.push({'event': 'changeCountryClicked'});"  data-target="#cs-model" >Change Country                        <span class="sr-only">opens a dialog</span>
+</a>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                </div>
+
+            </footer>
+        </section>
+        <!--End: Footer Section-->
+        
+        
+    </div>
+
+
+
+    
+
+
+    <!-- Start PWA Section of Google Light house -->
+    
+    <!-- END PWA Section of Google Light house -->
+<input name="__RequestVerificationToken" type="hidden" value="lfH0CeNG7be7orS8V5G8HQwkPkJAXl2xvSHveAkGKIzep62yuH3qkQiwajoltsUnw2XC-JNT0WfpWb0zXhunk_vU8A7XAMEUPizxKap7DUU1" />
+
+</body>
+
+</html>

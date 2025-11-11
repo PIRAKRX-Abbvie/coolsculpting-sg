@@ -1,0 +1,1006 @@
+
+
+
+<!DOCTYPE html>
+<html lang="EN-SG" data-lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+
+
+    <style>
+        html, body {
+            height: auto;
+            width: 100%;
+            padding: 0px;
+            overflow-x: hidden;
+        }
+
+        body {
+            position: relative;
+            max-width: 1440px;
+            margin: 0 auto;
+            background: #fff;
+            color: #75787b;
+            font-family: AvenirNextLTW01-Medium;
+            font-size: 16px;
+            line-height: 24px;
+            -ms-overflow-style: scrollbar;
+        }
+
+        .cookie-avl .cookie-wrapper {
+            display: table;
+        }
+
+        .cookie-wrapper {
+            display: none;
+            position: fixed;
+            max-width: 1440px;
+            margin: 0 auto;
+            top: 0px;
+            width: 100%;
+            padding: 10px 40px 8px;
+            text-align: left;
+            background-color: #00a4e0;
+            z-index: 9999;
+        }
+
+        .main-header {
+            position: fixed;
+            max-width: 1440px;
+            margin: 0 auto;
+            width: 100%;
+            background: #fff;
+            z-index: 1000;
+        }
+
+        section, article {
+            width: 100%;
+            float: left;
+        }
+
+        article, aside, dialog, figure, footer, header, hgroup, nav, section {
+            display: block;
+        }
+
+            /*header {
+                height: 80px;
+            }*/
+
+            section intro-container {
+                height: 687px;
+            }
+
+            section image-map {
+                height: 688px;
+            }
+
+        .main-header .header-inner {
+            width: 20%;
+            float: left;
+        }
+
+        .main-header .nav-menu {
+            width: 80%;
+            display: block;
+            float: left;
+        }
+
+        .main-header ul.main-nav {
+            display: block;
+            width: auto;
+            /*margin-left: 30px;*/
+        }
+
+        .main-header .nav-menu ul li {
+            display: inline-block;
+            width: auto;
+            position: relative;
+            margin: 0;
+        }
+
+        .main-header ul.lan-select {
+            display: block;
+            width: auto;
+            /*margin: 15px 0px;*/
+            border-bottom: none;
+            float: right;
+            position: relative;
+            padding: 0px 20px;
+            text-align: center;
+        }
+
+
+        .main-header .nav-flexi .list-container .overlay {
+            position: absolute;
+            display: none;
+            width: 100%;
+            height: 100%;
+            background: #f4f4f4;
+            z-index: -9;
+        }
+
+        .main-header .order-2 {
+            order: 2;
+        }
+
+        .main-header .order-3 {
+            order: 3;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0,0,0,0);
+            border: 0;
+        }
+
+        .intro-container .image-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .main-header .nav-flexi .list-container > .list-item {
+            display: none;
+        }
+
+
+        img[loading="lazy"] {
+            display: none;
+        }
+    </style>
+
+
+    <script>
+
+        var yViewableArea = window.innerHeight;
+        var imagePosi = 0;
+        function addLinktagforImage(val) {
+            var sc = document.createElement("link");
+            sc.setAttribute("href", val);
+            sc.setAttribute("rel", "preload");
+            sc.setAttribute("as", "image");
+            document.getElementsByTagName("head")[0].appendChild(sc);
+        }
+        function InitialImageload(img) {
+
+            //const images = document.querySelectorAll('img[loading="lazy"]');
+            if (img.getAttribute('datasrc') != undefined && img.src != img.getAttribute('datasrc') && img.getAttribute('loading') != undefined && img.getAttribute('loading') == "lazy") {
+                var device = "all";
+                if (window.innerWidth > 991) {
+                    device = "desktop";
+                }
+                else if (window.innerWidth > 767) {
+                    device = "tablet";
+                }
+                else {
+                    device = "mobile";
+                }
+
+                var BreakException = {};
+
+                try {
+
+
+
+                    if (img.getAttribute('device') != null && img.getAttribute('device') == 'all' && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        //setHeaderHight();
+                    }
+                    else if (img.getAttribute('device') != null && img.getAttribute('device').match('desktop') && device == "desktop" && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        //setHeaderHight();
+                    }
+                    else if (img.getAttribute('device') != null && img.getAttribute('device').match('tablet') && device == "tablet" && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        // setHeaderHight();
+                    }
+                    else if (img.getAttribute('device') != null && img.getAttribute('device').match('mobile') && device == "mobile" && imagePosi < yViewableArea) {
+                        imagePosi += img.getAttribute('dataheight');
+                        if (img.getAttribute("datasrc") != '')
+                            img.src = img.getAttribute("datasrc")
+                        img.setAttribute('loading', 'lazy loaded')
+
+                        //setHeaderHight();
+                    }
+                    else if (imagePosi >= yViewableArea) {
+                        throw BreakException;
+                    }
+                    dynamicHeight(img);
+
+                } catch (e) {
+                    if (e !== BreakException) throw e;
+                }
+            }
+
+        }
+
+        function ImageLazyload() {
+
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            if (images.length > 0) {
+                var device = "all";
+                if (window.innerWidth > 991) {
+                    device = "desktop";
+                }
+                else if (window.innerWidth > 767) {
+                    device = "tablet";
+                }
+                else {
+                    device = "mobile";
+                }
+
+                var BreakException = {};
+
+                try {
+
+                    for (var i = 0; i < images.length; i++) {
+                        var img = images[i];
+                        var yImagPosition = 0;
+                        const rect = img.getBoundingClientRect();
+                        yImagPosition = (rect.top != undefined ? rect.top : window.screenTop) + (window.scrollY != undefined ? window.scrollY : window.screenY);
+                        //console.log("------------------");
+                        //console.log("SRC : "+img.getAttribute("datasrc"));
+                        //console.log("DEVICE : " + img.getAttribute("device"));
+                        //console.log("yImagPosition : " + yImagPosition);
+                        //console.log("yViewableArea : " + yViewableArea);
+
+                        if (img.getAttribute('device') != null && img.getAttribute('device') == 'all' && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (img.getAttribute('device') != null && img.getAttribute('device').match('desktop') && device == "desktop" && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (img.getAttribute('device') != null && img.getAttribute('device').match('tablet') && device == "tablet" && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (img.getAttribute('device') != null && img.getAttribute('device').match('mobile') && device == "mobile" && yImagPosition < yViewableArea) {
+                            if (img.getAttribute("datasrc") != '')
+                                img.src = img.getAttribute("datasrc")
+                            img.setAttribute('loading', 'lazy loaded')
+
+                        }
+                        else if (yImagPosition >= yViewableArea) {
+                            throw BreakException;
+                        }
+
+                        dynamicHeight(img);
+
+
+                    }
+                } catch (e) {
+                    if (e !== BreakException) throw e;
+                }
+            }
+        }
+
+        function dynamicHeight(img) {
+
+            //if (img.parentElement != undefined && img.parentElement.parentElement != undefined &&
+            //    img.parentElement.parentElement.parentElement != undefined && img.parentElement.parentElement.parentElement.parentElement != undefined &&
+            //    img.parentElement.parentElement.parentElement.parentElement.getAttribute("class") != null &&
+            //    img.parentElement.parentElement.parentElement.parentElement.getAttribute("class").startsWith('overview-container')) {
+
+            //    if (window.innerWidth > 991) {
+
+            //        var height = img.parentElement.nextElementSibling.offsetHeight > img.parentElement.offsetHeight ? img.parentElement.nextElementSibling.offsetHeight : img.parentElement.offsetHeight;
+            //        img.parentElement.setAttribute('style','height:'+height+'px;')
+            //        img.parentElement.nextElementSibling.setAttribute('style','height:'+height+'px;')
+            //        img.setAttribute('style', 'height:'+height+'px;')
+            //    }
+            //    else {
+            //        img.parentElement.setAttribute('style', img.parentElement.getAttribute('style') + 'height:auto;')
+            //        img.parentElement.nextElementSibling.setAttribute('style', img.parentElement.nextElementSibling.getAttribute('style') + 'height:auto;')
+            //        img.setAttribute('style', 'height:auto;')
+            //    }
+
+            //}
+        }
+
+        //window.addEventListener('DOMContentLoaded', function () {
+        //    window.scrollBy(0, 1);
+        //});
+        function loadListeners() {
+
+            window.addEventListener('resize', function () {
+                ImageLazyload();
+            });
+
+            window.addEventListener('scroll', function () {
+                yViewableArea = window.innerHeight + (window.scrollY != undefined ? window.scrollY : window.screenY);
+                ImageLazyload();
+                //setHeaderHight();
+            });
+
+            window.addEventListener('load', function () {
+                ImageLazyload();
+            });
+        }
+
+        loadListeners();
+        //$(document).ready(function () {
+        //    alert('test');
+        //    ImageLazyload();
+        //})
+
+
+    </script>
+
+    <link rel="preload" href="Images/blank-image2125.png?la=en" as="image" />
+
+
+        <!--Fonts for other then Australia-->
+        <link rel="preload" as="style" href="https://fast.fonts.net/cssapi/d12edc21-ced2-4219-94d9-f1987474ceda.css?display=swap" />
+        <link rel="preload" as="style" href="https://fast.fonts.net/cssapi/53fb3da4-bd03-40d5-9010-1fae680aed4b.css?display=swap" />
+        <link rel="preload" as="style" href="https://fast.fonts.net/cssapi/64a0ca88-fff0-48dc-8e2e-9b11887c8207.css?display=swap" />
+                    
+                <link rel="stylesheet" href="Styles/Coolsculpting/FontReferenceStatic.css" />
+<link href="-/media/allergan-themes/theme/common/bootstrapmin.css" rel="stylesheet" type="text/css" /><link href="-/media/allergan-themes/theme/coolsculpting/custom/jquerybxslidermin.css" rel="stylesheet" type="text/css" /><link href="-/media/allergan-themes/theme/coolsculpting/bundles/minify/MinifiedFile161221050815.css" rel="stylesheet" type="text/css" /><script defer type="text/javascript" src="-/media/allergan-themes/script/common/jquery-214min.js" /></script>                <link rel="icon" href="-/media/project/coolsculpting/page/favicon.ico" />
+        <script>
+        (function (w, d, s, l, i) {
+        w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+            new Date().getTime(), event: 'gtm.js'
+        }); var
+            f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src
+                =
+                'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-KSQJDHS');</script>
+
+
+
+<link rel ='alternate' href = 'https://www.coolsculpting.sg/locator-terms-conditions-of-use-disclaimer' hreflang = 'x-default' />
+<link rel = 'alternate' href = 'https://www.coolsculpting.sg/locator-terms-conditions-of-use-disclaimer' hreflang = 'en-sg' />
+<link rel = 'alternate' href = 'https://www.yosoycool.es/localizador-de-clinicas-de-allergan-condiciones-generales-de-uso' hreflang = 'es-es' />
+<link rel = 'alternate' href = 'https://uk.coolsculpting.com/locator-terms-conditions-of-use' hreflang = 'en-gb' />
+<link rel = 'alternate' href = 'https://www.coolsculpting.com.au/terms-and-conditions-clinic-locator' hreflang = 'en-au' />
+<link rel = 'alternate' href = 'https://www.coolsculpting.com.br/locator-terms-conditions-of-use' hreflang = 'pt-br' />
+<link rel = 'alternate' href = 'https://www.coolsculpting.de/nutzungsbedingungen' hreflang = 'de-de' />
+<link rel = 'alternate' href = 'https://www.coolsculpting.com.it/termini-e-condizioni-d’uso' hreflang = 'it-it' />
+<link rel = 'alternate' href = 'https://www.coolsculpting.my/locator-terms-conditions-of-use-disclaimer' hreflang = 'en-my' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-bh' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-eg' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-ir' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-jo' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-kw' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-ma' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-qa' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-sa' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-ae' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-tn' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-om' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/locator-terms-conditions-of-use' hreflang = 'en-lb' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-bh' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-eg' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-ir' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-jo' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-kw' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-lb' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-ma' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-om' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-qa' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-sa' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-tn' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fa/locator-terms-conditions-of-use' hreflang = 'fa-ae' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-bh' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-eg' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-ir' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-jo' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-lb' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-kw' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-ma' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-om' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-qa' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-sa' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-tn' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/fr/locator-terms-conditions-of-use' hreflang = 'fr-ae' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-eg' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-ir' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-jo' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-bh' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-kw' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-lb' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-ma' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-om' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-qa' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-sa' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-tn' />
+<link rel = 'alternate' href = 'https://www.coolsculpting-mena.com/ar/locator-terms-conditions-of-use' hreflang = 'ar-ae' />
+<link rel = 'alternate' href = 'https://mx.coolsculpting.com/en/locator-terms-conditions-of-use' hreflang = 'en-mx' />
+<link rel = 'alternate' href = 'https://mx.coolsculpting.com/locator-terms-conditions-of-use' hreflang = 'es-mx' />
+<link rel = 'alternate' href = 'https://www.coolsculpting.nl/algemene-gebruiksvoorwaarden-kliniekzoeker' hreflang = 'nl-nl' />
+<link rel = 'alternate' href = 'https://www.coolsilhueta.pt/localizador-de-clinicas' hreflang = 'pt-pt' />
+
+
+
+
+
+    <script>
+        var siteDefaultLanguage = 'en';
+        
+
+ var supportLowercaseURL = false;
+
+        var removeDefaultLanguage =0;
+        if (removeDefaultLanguage == 1) {
+            removeDefaultLanguage = true;
+        }
+        else {
+            removeDefaultLanguage = false;
+        }
+    </script>
+
+
+        <!--Fonts for other then Australia-->
+        <link rel="stylesheet" href="https://fast.fonts.net/cssapi/d12edc21-ced2-4219-94d9-f1987474ceda.css?display=swap" />
+        <link rel="stylesheet" href="https://fast.fonts.net/cssapi/53fb3da4-bd03-40d5-9010-1fae680aed4b.css?display=swap" />
+        <link rel="stylesheet" href="https://fast.fonts.net/cssapi/64a0ca88-fff0-48dc-8e2e-9b11887c8207.css?display=swap" />
+                    
+                <script defer rel="preload" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALkGGfcTisYYtZuo-kd-vY2mQ3oDUuWEQ&amp;channel=CoolSculpting-SG&amp;libraries=places"></script>
+<script defer type="text/javascript" src="-/media/allergan-themes/script/common/angularmin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/common/angular-routemin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/common/angular-cookiesmin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/common/angular-filter.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/bundles/minify/MinifiedFile070922105854.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/common/bootstrapmin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/custom/modalVideomin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/custom/mapsvgmin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/custom/jquerynicescrollmin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/custom/jquerybxslidermin.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/coolsculpting/custom/player.js" /></script><script defer type="text/javascript" src="-/media/allergan-themes/script/common/AgnProjectCoolsculptingjquerygeocompletemin.js" /></script>    </head>
+<body class="en SingaporeCoolsculpting"  pagename="locator-terms-conditions-of-use-disclaimer" data-imglazyload="1" enablelanguagecodeupdate="True">
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSQJDHS"
+                    height="0" width="0"
+                    style="display:none;visibility:hidden"></iframe>
+        </noscript>
+
+
+                    <div id="settings-site" data-isEEditor="0">
+                    <div id="settings-geolocation" data-geolocationapi=https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAltuYszRmFVsQ6SIQv6O7UYvITwc57dd0>
+                    </div>
+                    <div id="settings-countrycode" data-country=SG>
+                    </div>
+                    <div id="settings-countrycodefilter" data-countries="SG">
+                    </div>
+                    <div id="settings-countryname" data-countryname="Singapore">
+                    </div>
+                    <div id="settings-unbranded" data-unbranded="False">
+                    </div>
+                    <div id="settings-isgdpr" data-gdpr="False">
+                    </div>
+                    <div id="settings-isdistanceinkm" data-distanceinkm="False">
+                    </div>
+                    <div id="settings-isradius" data-radius="7">
+                    </div>
+                    
+                    <div id="settings-SFGlobalcliniclocator" data-ICLApproach="1">
+                    </div>
+                    <div id="settings-ICLDistance" data-icldistancevalue="">
+                    </div>
+                    <div id="settings-ICLCountryCode" data-ICLCountryCodevalue="SG">
+                    </div>
+                    <div id="settings-ICLClustercountrycode" data-Clustercountrycodevalue="">
+                    </div>
+                    <div id="settings-ImageLazyload" data-ImageLazyload="1">
+                    </div>
+
+                </div>
+
+    <!--  Start Sitecore Jquery Issues Conflict -->
+    <script>
+        if (typeof jQuery != 'undefined' && jQuery.fn.jquery == "1.5.1") {
+            jQuery.noConflict(true);
+        }
+    </script>
+    <!--  End Sitecore Jquery Issues Conflict -->
+    <div ng-app="allerganApp" class="ng-coolsculpting">
+        <!--Start: Cookie Policy Section-->
+        <section cookie class="ng-scope">
+                        
+            
+            
+            
+        </section>
+        <!--End: Cookie Policy Section-->
+        <!--Start: Header Section-->
+
+        <section header class="ng-scope">
+            <header class="main-header clearfix " role="banner">
+                <div class="header-inner">
+                        <div class="header exp-editor">
+<a href="/" class="logo ft-left" ><img src="Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="desktop" datasrc="/-/media/project/coolsculpting/homepage/logo-coolsculp-dt.png" alt="CoolSculpting-logo-coolsculp-dt" class="hidden-xs hidden-sm" /><img src="Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="tablet" datasrc="/-/media/project/coolsculpting/homepage/logo-coolsculp-dt.png" alt="CoolSculpting-logo-coolsculp-dt" class="hidden-xs hidden-md hidden-lg" /><img src="Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="mobile" datasrc="/-/media/project/coolsculpting/homepage/logo-coolsculp-dt.png" alt="CoolSculpting-logo-coolsculp-dt" class="hidden-sm hidden-md hidden-lg" /></a>        
+
+
+        <a href="javascript:void(0);" aria-expanded="false" role="button" aria-label="toggle navigation" data-ng-class="{active: active}" data-ng-click="active =!active;menuToggled();" class="btn menu-btn ft-right">
+                <span class="sr-only">Navigation menu</span>
+            <div data-ng-hide="active" class="burger-menu ft-left">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+<img src="Images/blank-image2125.png?la=en" dataheight="24" src="#" Class="close-toggle" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/logo/close.png" data-ng-show="active" alt="CoolSculpting-close" />
+
+        </a>
+    </div>
+
+                </div>
+                <div class="nav-menu" role="navigation">
+                        <ul class="ft-left main-nav order-2 nav-flexi " role="menubar">
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="/what-is-coolsculpting" Class="nav-title" aria-expanded="false" aria-haspopup="true" >What is CoolSculpting&reg;?</a>                                
+<a href="/what-is-coolsculpting" ng-click="navigateNxt($event);" Class="list-item first-item-menu" >What is CoolSculpting&reg;?</a>                                                            </li>
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="javascript:void(0);" Class="nav-title" aria-expanded="false" aria-haspopup="true" >Results<img src="-/media/project/coolsculpting/navigation/icon-drop.png?h=24&amp;w=24&amp;la=en&amp;hash=4E087C3BCE2F27D6593B70EEDE5EB75D6014D643" alt="CoolSculpting-icon-drop" /></a>                                
+<a href="javascript:void(0);" ng-click="navigateNxt($event);" Class="list-item" >Results</a>                                                                    <ul class="sub-menu dropdown-content">
+                                                <li>
+
+<a href="/what-to-expect" ng-click="navigateNxt($event);" Class="list-item" >                                                 <!--inner Navigation Menu DisplayName-->
+What to expect</a>
+                                        </li>
+                                                <li>
+
+<a href="/harpersbazaar-coolsculpting" target="_blank" Class="list-item" ng-click="navigateNxt($event);" >                                                 <!--inner Navigation Menu DisplayName-->
+News Press: Harper’s Bazaar</a>
+                                        </li>
+                                </ul>
+                            </li>
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="/how-it-works" Class="nav-title" aria-expanded="false" aria-haspopup="true" >How it works</a>                                
+<a href="/how-it-works" ng-click="navigateNxt($event);" Class="list-item first-item-menu" >How it works</a>                                                            </li>
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="/faq" Class="nav-title" aria-expanded="false" aria-haspopup="true" >FAQs</a>                                
+<a href="/faq" ng-click="navigateNxt($event);" Class="list-item first-item-menu" >FAQs</a>                                                            </li>
+                        <li class="list-container" role="menuitem">
+                            <div class="overlay"></div>
+
+
+
+<a href="/before-after-gallery" Class="nav-title" aria-expanded="false" aria-haspopup="true" >Before &amp; After Gallery</a>                                
+<a href="/before-after-gallery" ng-click="navigateNxt($event);" Class="list-item first-item-menu" >Before &amp; After Gallery</a>                                                            </li>
+    </ul>
+
+                    
+                        <ul class="cta-group order-1 " role="menubar">
+                    <li role="menuitem">
+<a href="/clinic-list" onclick="dataLayer.push({'buttonLocation': 'Header','event': 'findProviderClicked'});" Class="btn cta" ><img src="Images/blank-image2125.png?la=en" dataheight="24" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/map-pin.png" alt="CoolSculpting-map-pin.png" />                                    <span>
+                                        Find Certified Clinic List
+                                    </span>
+<img src="-/media/project/coolsculpting/navigation/icon-drop.png?h=24&amp;w=24&amp;la=en&amp;hash=4E087C3BCE2F27D6593B70EEDE5EB75D6014D643" class="icon-nav" alt="CoolSculpting-icon-drop" /></a>                    </li>
+    </ul>
+
+                </div>
+            </header>
+            <div class="sticky-header "></div>
+        </section>
+        <!--End: Header Section-->
+        <!--Layout Changes: Start-->
+        <main>
+            <section>
+        <section title-description class="ng-scope">
+        <div class="pagetitle-container">
+                <h1 class="pagetitle">
+                    Allergan Clinic Locator – Disclaimer and Terms & Conditions of Use
+
+
+                </h1>
+                    </div>
+    </section>
+    <section privacypolicy class="ng-scope">
+        <div class="addInfo-container">
+            <div class="block-inner">
+                <div class="privacy-container">
+                    <div class="content-inner">
+
+<h2 class="heading_h4" style="text-align:center">LOCATOR DISCLAIMER</h2>
+<p>This clinic locator (“Locator”) is provided to You as a service aimed at facilitating the interaction with qualified medical practices for independent and professional medical advice relating to aesthetic treatments. </p>
+<p>Allergan does not endorse, certify or otherwise promotes the skills, capabilities, qualifications, credentials, expertise and experience of any clinical practice and/or healthcare professional in particular. </p>
+<p>The information on this website is intended for informational and educational purposes only and should not be used as a substitute for advice provided by a qualified medical aesthetics practitioner. </p>
+<p>The search filters in the Locator are provided to improve the search results based on Your interests. In any case, the search results are listed based on geographical relevance. By using the Locator and/or navigating on this webpage, You agree to the following terms and conditions of use. </p>
+
+
+<h2 class="heading_h4" style="text-align:center">TERMS & CONDITIONS OF USE</h2>
+<h2 class="heading_h4">1.         GENERAL</h2>
+
+<p>Please read and review these Terms of Use carefully before accessing or using the Locator. By accessing or using the Website, You acknowledge that You have read, understood and agreed to these Terms and Conditions of Use.</p>
+
+<p>The Locator is a web-based service owned and managed by Allergan (including its Affiliates) that enables You to search and contact the nearest medical aesthetic practice.</p>
+
+<p>Allergan provides this service to You for the exclusive purpose of promoting access to appropriate medical standard and practices and therefore to support the need of an accurate, balanced and independent information and consultation on aesthetic treatment options. </p>
+
+<p>You understand that the Locator lists medical practices that are validated by Allergan as Allergan customers. This means that Allergan has verified the individual doctors and/or medical practices licences to operate. All medical practices included in the list are not required to purchase Allergan products. The inclusion in the Locator is entirely free and subject to each individual doctor and/or medical practice consent and agreement to have their information displayed in the Locator. </p> 
+
+<p>The Locator is made available to You free of charge. The individual doctors and/or medical practices included in the Locator do not pay Allergan any fees for this service. </p> 
+
+<p>The Locator does not constitute any form of partnership, co-marketing or co-promotion between Allergan and the individual doctors and/or medical practices. </p> 
+<p>The information contained in the Locator is not an offer to sell, or a solicitation of any product or service supplied by Allergan or by Allergan customers or third-party medical practices that use Allergan products.</p>
+
+<h2 class="heading_h4">2.         USAGE</h2> 
+<p>You will use the Locator in a manner consistent with any, and all, applicable laws, legislation, rules and regulations. If You violate any restrictions in these terms, You agree to indemnify Allergan for any losses, costs or damages, including reasonable legal fees, incurred by Allergan in relation to, or arising out of, such a breach.</p>
+
+<h2 class="heading_h4">3.         EXCLUSION OF WARRANTIES</h2> 
+<p>You accept that the Locator is provided on an ‘as is’ and ‘as available’ basis. Allergan excludes all warranties as to the satisfactory quality, fitness, for a purpose, freedom from computer viruses and non-infringement of third-party rights regarding the Locator, to the extent fully permitted by the applicable laws and regulations.</p>
+<p>You understand and agree that by listing any individual doctor and/or medical practice (including their staff and personnel) and/or by publishing any of the information that refer to such individual doctors or practices, Allergan does not endorse, certifies, assess, promotes, supports or otherwise recommend You to consult or use the services of any of such doctors and practices in particular, nor Allergan recognizes and suggest that any of these individual doctors or practices is qualified, capable and skilled to provide You with the medical treatments or outcomes You expected. </p> 
+
+<p>Allergan only recommends You discuss Your medical aesthetic interest in treatments with qualified professionals, and that You ensure You have gathered sufficient and satisfactory information before making a decision on Your treatment. </p> 
+
+<h2 class="heading_h4">4.         RISK</h2> 
+<p>The entire risk related to the use of the Locator is with You. Any information and/or other content You have accessed and used while using the Locator is entirely at Your risk, and You bear the entire responsibility for any costs, damages, losses, or claims that You may experience because of Your use of the Locator. </p> 
+
+<h2 class="heading_h4">5.         LIABILITY</h2> 
+<p>You understand that Allergan relies on the declarations made by third party medical practices and or individual healthcare professionals with regards to the accuracy of the information provided on the Locator. Allergan therefore declines any liability with regards to accuracy and reliability of such information and as such will not be liable for any direct or indirect, special, incidental or consequential loss of profits, revenue, contracts or goodwill resulting from any errors or omissions on any information provided in the Locator. </p> 
+
+<h2 class="heading_h4">6.         EXCLUSION OF LIABILITY</h2> 
+<p>Allergan will not be liable for any direct or indirect, special, incidental or consequential loss of profits, revenue, contracts or goodwill resulting from the availability or interruption of the Website or from work stoppage, computer failure, computer viruses, loss of data or in any other respect whatsoever from the use of this site. Fully permitted by the applicable law, Allergan excludes all liability for any errors in, or omissions from, any information, materials or functions contained on the Locator and all liability for negligence. Nothing in these terms shall exclude our liability for death or personal injury arising from our negligence or for any fraudulent misrepresentation made by Allergan.</p>
+
+<h2 class="heading_h4">7.         REMOVING MATERIAL INCLUDED IN THE LOCATOR</h2> 
+<p>Although Allergan does not assume responsibility for monitoring or editing material published in the Locator, if any inappropriate content or material is brought to its attention, Allergan, at its discretion, reserves the right to take appropriate action to edit or, if necessary, remove any such content.</p>
+
+<h2 class="heading_h4">8.         COPYRIGHT</h2>
+
+<p>The copyright in material and/or content in the Locator is owned or licensed to Allergan and protected by the copyright laws of Singapore, international copyright treaties and any other applicable copyright and intellectual property laws.</p>
+
+<h2 class="heading_h4">9.         TRADEMARKS</h2> 
+<p>All product names, logos and services appearing on the Website that are identified by ® or ™ or appearing in type form different from that of the surrounding text are trademarks owned by or licensed to Allergan or our affiliates; unless otherwise identified as being owned by another entity. The use of these trademarks by You is prohibited unless specifically permitted by these terms and conditions or by special permission granted in writing by Allergan, or for identifying the products or services of Allergan. The display of any trademark not owned by us on our site does not imply that any license has been granted by its owner. No trademark infringement is intended, and no suggestion is made that the owner of the trademark endorses Allergan’s products or services. Equally, Allergan’s display of the trademark does not constitute an endorsement or approval by it of the trademark owner, its website or its products and/or services.</p>
+
+<h2 class="heading_h4">10.       PRIVACY</h2> 
+<p>Allergan complies with the General Data Protection Regulation and any other applicable data protection legislation and all personal data voluntarily provided to Allergan via the Locator shall be processed in accordance with its Privacy Policy. The usage of the Locator does not require You to provide any personal information to Allergan, however we recommend You review the privacy statement relating to the Allergan website in which the Locator is included. </p> 
+
+<h2 class="heading_h4">11.       TERMINATION</h2> 
+<p>Your access to and use of the Locator may be changed, restricted or terminated by Allergan by notice with immediate effect at any time and whatsoever reason.  </p>  
+
+<h2 class="heading_h4">12.       SEVERANCE</h2>
+<p>If any part of these terms and conditions of use is declared invalid for any reason by a court of competent jurisdiction, this will not affect the validity of any remaining part of the terms. Any such remaining part will remain in full force and effect as if the invalid part of the terms had been eliminated.</p>
+
+<h2 class="heading_h4">13.       MODIFICATIONS</h2> 
+<p>Allergan reserves its right to modify the Locator and the terms and conditions governing its use at any time without prior notice. By accessing and using the Locator, You will be automatically bound by any such changes and should, therefore, periodically visit this page to review the current terms and conditions.</p>
+
+<h2 class="heading_h4">14.       GOVERNING LAW &amp; JURISDICTION</h2>
+<p>The Locator is operated under the laws and regulations of Singapore. You agree that the Singapore courts will have jurisdiction over any dispute or claim relating to Your use of this site. The site is intended to be used by residents located in Singapore, although it may be accessed by users outside of this country.</p>
+
+<p>Effective Date: February 1st, 2020</p>                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="cs-model" class="modal fade in" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content" role="document">
+                <div class="modal-header">
+                        <div class="cs-close-wrap" tabindex="0">
+<img src="-/media/project/coolsculpting/navigation/close6eb7.png?h=24&amp;w=24&amp;la=en&amp;hash=B9539B9D19DA2499438348F05366BC216206305C" Class="close" data-dismiss="modal" alt="Close" />    </div>
+        <p class="modal-title">
+            This website is intended for people who reside in Singapore only.  If you want to view another website please choose from the list below:
+        </p>
+
+                </div>
+                <div class="modal-body">
+                            <div class="modal-body">
+            <div class="cs-wrapper">
+                <ul>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://uk.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'United Kingdom','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/gb.png" alt="testing" />                                        <span class="cs-text">
+                                            UK
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://fi.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Finland','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/finland-flag.jpeg" alt="testing" />                                        <span class="cs-text">
+                                            Finland
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://hk.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Hongkong','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/HongKong.png" alt="testing" />                                        <span class="cs-text">
+                                            Hong Kong
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://in.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'India','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/India.png" alt="testing" />                                        <span class="cs-text">
+                                            India
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://jp.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/Japan.jpeg" alt="testing" />                                        <span class="cs-text">
+                                            Japan
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://my.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Malaysia','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/Malaysia.png" alt="testing" />                                        <span class="cs-text">
+                                            Malaysia
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://no.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Norway','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/norway.jpeg" alt="testing" />                                        <span class="cs-text">
+                                            Norway
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://pl.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Poland','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/Poland_Flag.png" alt="testing" />                                        <span class="cs-text">
+                                            Poland
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://www.coolsculpting-france.com/" onclick="dataLayer.push({'countryName': 'France','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/fr.png" alt="testing" />                                        <span class="cs-text">
+                                            France
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://de.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Germany','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/de.png" alt="testing" />                                        <span class="cs-text">
+                                            Germany
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://br.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Brazil','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/br.png" alt="testing" />                                        <span class="cs-text">
+                                            Brazil
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://www.coolsculpting.com.cn/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'China','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/cn.png" alt="testing" />                                        <span class="cs-text">
+                                            China
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://www.coolsculpting.kr/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Korea','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/kr.png" alt="testing" />                                        <span class="cs-text">
+                                            Korea
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://dk.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Netherlands','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/denmark.jpeg" alt="testing" />                                        <span class="cs-text">
+                                            Denmark
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://nl.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Netherlands','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/nl.png" alt="testing" />                                        <span class="cs-text">
+                                            Netherlands
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://coolsculpting.se/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Sweden','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/se.png" alt="testing" />                                        <span class="cs-text">
+                                            Sweden
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://coolsculpting.com.au/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Australia','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/au.png" alt="testing" />                                        <span class="cs-text">
+                                            Australia
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="http://coolsculpting.ca/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'Canada','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/ca.png" alt="testing" />                                        <span class="cs-text">
+                                            Canada
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://www.coolsculpting.com/" onclick="dataLayer.push({'countryName': 'USA','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/us.png" alt="testing" />                                        <span class="cs-text">
+                                            USA
+                                        </span>
+</a>                            </li>
+                            <li>
+                                <!--//Check is country-->
+
+
+<a href="https://za.coolsculpting.com/?cs_internal_flag=SKIP_ORIGIN_CHECK" onclick="dataLayer.push({'countryName': 'South Africa','event': 'changeCountryCountrySelected'});" Class="cs-map" ><img src="Images/blank-image2125.png?la=en" dataheight="20" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/za.png" alt="testing" />                                        <span class="cs-text">
+                                            South Africa
+                                        </span>
+</a>                            </li>
+                </ul>
+            </div>
+        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <section links class="ng-scope">
+        <div class="link-container">
+            <ul class="block-inner">
+                
+            </ul>
+        </div>
+    </section>
+</section>
+
+            
+        </main>
+
+        <!--Start: Country Selection-->
+        <section country-selection class="ng-scope">
+            
+        </section>
+        <!--End: Country Selection-->
+        <!-------------------------------------------------------------------------------------->
+        <!--Start: Footer Section-->
+        <section footer class="ng-scope">
+            <footer class="footer-section" role="contentinfo">
+                <div class="clinic-loc">
+                    <div class="block-inner">
+                        
+                    </div>
+                </div>
+                <div class="footer-inner clearfix">
+                    <div class="block-inner">
+                        <div class="footer-sec2">
+                            <a href="https://www.allerganaesthetics.com/" class="ws-logo" target="_blank" ><img src="Images/blank-image2125.png?la=en" dataheight="42" src="#" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/homepage/webp/allerganaesthetics_logo_black.png" alt="" />                <span class="sr-only"></span>
+</a>        <p class="footer-logo-info">Made by Allergan, world leader in medical aesthetics</p>
+<ul class="social-icons">
+                    <li>
+<a href="https://www.facebook.com/CoolSculptingSG" class="icon-s1" target="_blank" ="" ><img src="-/media/project/coolsculpting/navigation/fb5430.png?la=en&amp;hash=FD32A5C849C02E3708381E1E4878B7890F2CDC40" dataheight="38" src="Images/blank-image.png" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/fb.png" alt="CoolSculpting-fb" /></a>
+                    </li>
+                    <li>
+<a href="https://www.instagram.com/coolsculptingsg/" class="icon-s1" target="_blank" ="" ><img src="-/media/project/coolsculpting/navigation/instagrama7de.png?la=en&amp;hash=A9B372CBC588A3FC2EC64515DCD546DE23139B08" dataheight="38" src="Images/blank-image.png" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/instagram.png" alt="CoolSculpting-instagram" /></a>
+                    </li>
+</ul>
+
+                        </div>
+                        <div class="footer-sec1">
+                                <div class="sec-inner section-links">
+        <ul class="footer-links">
+                        <li>
+<a href="https://www.abbvie.com.sg/privacy.html" Class="icon-link" aria-label="Privacy Policy" target="_blank" >Privacy Policy</a>                        </li>
+                        <li>
+<a href="https://www.abbvie.com/terms-of-use.html" Class="icon-link" aria-label="Terms and Conditions" target="_blank" >T&amp;C's</a>                        </li>
+                        <li>
+<a href="/disclaimers" aria-label="Disclaimers" Class="icon-link" >Disclaimers</a>                        </li>
+                        <li>
+<a href="/sitemap" aria-label="Site map" Class="icon-link" >Site Map</a>                        </li>
+                        <li>
+<a href="/contact-us" aria-label="Contact us" Class="icon-link" >Contact us</a>                        </li>
+                        <li>
+<a href="https://coolnet.force.com/CoolNetLogin?inst=0W" aria-label="For Physicians" Class="icon-link" >For Physicians<img src="Images/blank-image2125.png?la=en" dataheight="24" src="#" Class="icon-link" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/logo/hcplinklogo.png" alt="CoolSculpting-HCPLinkLogo" /></a>                        </li>
+                        <li>
+<a href="/locator-terms-conditions-of-use-disclaimer" aria-label="Clinic Locators Terms of Use & Disclaimer" Class="icon-link" >Clinic Locators Terms of Use & Disclaimer</a>                        </li>
+                        <li>
+<a href="javascript:void(0)" class="ot-sdk-show-settings" Class="icon-link" aria-label="" title="Overridden by OneTrust" >Cookie Settings</a>                        </li>
+        </ul>
+    </div>
+
+
+                            <div class="sec-inner country-select clearfix">
+                                <ul class="social-icons">
+                    <li>
+<a href="https://www.facebook.com/CoolSculptingSG" class="icon-s1" target="_blank" ="" ><img src="-/media/project/coolsculpting/navigation/fb5430.png?la=en&amp;hash=FD32A5C849C02E3708381E1E4878B7890F2CDC40" dataheight="0" src="Images/blank-image.png" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/fb.png" alt="CoolSculpting-fb" /></a>
+                    </li>
+                    <li>
+<a href="https://www.instagram.com/coolsculptingsg/" class="icon-s1" target="_blank" ="" ><img src="-/media/project/coolsculpting/navigation/instagrama7de.png?la=en&amp;hash=A9B372CBC588A3FC2EC64515DCD546DE23139B08" dataheight="0" src="Images/blank-image.png" onload="InitialImageload(this)" loading="lazy" device="all" datasrc="/-/media/project/coolsculpting/navigation/instagram.png" alt="CoolSculpting-instagram" /></a>
+                    </li>
+</ul>
+
+                                            <p class="info-text">This site is intended for Singapore audience only.  <br /><br /></p>
+<a href="javascript:void(0);" data-toggle="modal" Class="country-change" role="button" onclick="dataLayer.push({'event': 'changeCountryClicked'});"  data-target="#cs-model" >Change Country                        <span class="sr-only">opens a dialog</span>
+</a>
+                            </div>
+                        </div>
+                        
+                                <div class="ism-footer-note col-md-12 col-sm-12 col-xs-12">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 hidden-md hidden-lg footer-zinc info-extra">
+                    <div class="row">
+                            <p>SG/0059/2019  Date of preparation August 2019</p>
+                    </div>
+                </div>
+
+                <div class="col-md-10 col-sm-12 col-xs-12 footer-text info-extra">
+                </div>
+
+                <div class="col-md-2 hidden-sm hidden-xs footer-zinc info-extra">
+                        <p>SG/0059/2019  Date of preparation August 2019</p>
+                </div>
+
+            </div>
+        </div>
+
+                    </div>
+                    
+                </div>
+
+            </footer>
+        </section>
+        <!--End: Footer Section-->
+        
+        
+    </div>
+
+
+
+    
+
+
+    <!-- Start PWA Section of Google Light house -->
+    
+    <!-- END PWA Section of Google Light house -->
+<input name="__RequestVerificationToken" type="hidden" value="iCP3IivHNPv-hfPJZOcq2QGVmHsIRexXk8KB4faISyW96fIsT8_-rYjV7erVcgaQ7aBLV1BJRhkU_ingTr3_mZBT5sdk6recLkKtWelh2Qk1" />
+
+</body>
+
+</html>

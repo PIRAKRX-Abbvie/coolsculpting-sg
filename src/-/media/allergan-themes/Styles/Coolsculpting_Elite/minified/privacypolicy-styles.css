@@ -1,0 +1,290 @@
+
+.social-share .block1 .foot-note {
+    width: 100%;
+    text-align: left;
+    position: relative;
+    top: -40px;
+}
+
+    .social-share .block1 .foot-note a {
+        margin-right: 15px;
+        color: #002554;
+        font-weight: 600;
+    }
+
+body.privacy,
+body.terms {
+    font-family: "Avenir Next", sans-serif;
+}
+
+.privacy .privacy-comp .row .container {
+    max-width: 100%;
+    width: 100%;
+}
+
+.privacy .pagetitle-container,
+.terms .pagetitle-container {
+    background-color: #f4f4f4;
+    color: #333;
+    text-align: center;
+    padding: 30px 0;
+    width: 100%;
+    /*max-width: 1100px;*/
+}
+
+    .privacy .pagetitle-container h1,
+    .terms .pagetitle-container h1 {
+        color: #005eb8;
+        margin: 20px 23px 15px;
+        font-family: "AvenirNext-Medium";
+        font-size: 43px;
+        font-weight: 600;
+        line-height: 1.19;
+    }
+html[lang="zh"] .privacy .pagetitle-container h1,
+html[lang="zh"] .terms .pagetitle-container h1 {
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+.privacy .block-title,
+.privacy .block-content,
+.terms .block-title,
+.terms .block-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.privacy .block-title,
+.terms .block-title {
+    margin: 20px auto;
+    text-align: center;
+    color: #333;
+    width: 100%;
+}
+
+    .privacy .block-title .heading_h2,
+    .terms .block-title .heading_h2 {
+        font-family: "AvenirNext-Medium";
+        font-weight: 600;
+        color: #333;
+        line-height: normal;
+        font-size: 24px;
+        line-height: 1.4;
+        margin-bottom: 10px;
+    }
+
+        .privacy .block-title .heading_h2 span,
+        .terms .block-title .heading_h2 span {
+            display: block;
+        }
+
+.privacy .block-content .heading_h4,
+.terms .block-content .heading_h4 {
+    font-family: "AvenirNext-Medium";
+    font-weight: 600;
+    padding: 15px 0;
+    font-size: 18px;
+    line-height: 1.33;
+    color: #333;
+    margin: 0;
+}
+
+.privacy .block-content .heading_h5,
+.terms .block-content .heading_h5 {
+    font-family: "AvenirNext-Medium";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    color: #333;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.privacy .block-content .heading_h6,
+.terms .block-content .heading_h6 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.privacy .block-content p,
+.terms .block-content p {
+    margin: 0 0 10px;
+    margin-bottom: 20px;
+    font-family: "Avenir Next";
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 500;
+}
+
+.privacy .block-content .tbl-info,
+.terms .block-content .tbl-info {
+    display: table;
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+    .privacy .block-content .tbl-info .tbl-cell,
+    .terms .block-content .tbl-info .tbl-cell {
+        display: table-cell;
+        min-width: 250px;
+        padding: 15px;
+        border: 1px solid #333;
+    }
+
+.privacy .block-content .gt-list,
+.terms .block-content .gt-list {
+    padding: 0;
+    margin: 0;
+}
+
+.privacy .block-content .tbl-info .tbl-cell .gt-list-item,
+.terms .block-content .tbl-info .tbl-cell .gt-list-item {
+    margin-left: 20px;
+    margin-bottom: 0;
+    list-style-type: disc;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.privacy .block-content .gt-list .gt-list-item,
+.terms .block-content .gt-list .gt-list-item {
+    margin: 0 0 10px;
+    margin-left: 45px;
+    margin-bottom: 15px;
+    list-style-type: disc;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+}
+
+.privacy .block-content .gt-extra-inner,
+.terms .block-content .gt-extra-inner {
+    margin-left: 45px;
+}
+
+.privacy .block-content .gt-link,
+.terms .block-content .gt-link {
+    color: #f00;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    word-break: break-word;
+}
+html[lang="zh"] .privacy .block-title .heading_h2,
+html[lang="zh"] .terms .block-title .heading_h2,
+html[lang="zh"] .privacy .block-content .heading_h4,
+html[lang="zh"] .terms .block-content .heading_h4,
+html[lang="zh"] .privacy .block-content .heading_h5,
+html[lang="zh"] .terms .block-content .heading_h5,
+html[lang="zh"] .privacy .block-content .heading_h6,
+html[lang="zh"] .terms .block-content .heading_h6,
+html[lang="zh"] .privacy .block-content p,
+html[lang="zh"] .terms .block-content p {
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+html[lang="zh"] .privacy .block-content .tbl-info .tbl-cell .gt-list-item,
+html[lang="zh"] .terms .block-content .tbl-info .tbl-cell .gt-list-item,
+html[lang="zh"] .privacy .block-content .gt-list .gt-list-item,
+html[lang="zh"] .terms .block-content .gt-list .gt-list-item,
+html[lang="zh"] .privacy .block-content p,
+html[lang="zh"] .terms .block-content p {
+    font-weight: 400;
+}
+
+@media only screen and (max-width: 767px) {
+
+    .privacy .privacy-comp .block-content,
+    .terms .privacy-comp .block-content {
+        padding: 0 20px;
+    }
+
+    .privacy .block-content .gt-extra-inner,
+    .terms .block-content .gt-extra-inner {
+        margin-left: 45px;
+    }
+
+    .privacy .pagetitle-container h1,
+    .terms .pagetitle-container h1 {
+        font-size: 26px;
+    }
+
+    .privacy .block-title,
+    .terms .block-title {
+        margin-bottom: 0px;
+    }
+
+        .privacy .block-title .heading_h2,
+        .terms .block-title .heading_h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+
+    .privacy .block-content .heading_h4,
+    .terms .block-content .heading_h4 {
+        font-size: 16px;
+    }
+
+    .privacy .block-content p,
+    .terms .block-content p {
+        margin-bottom: 20px;
+        font-family: "Avenir Next";
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.43;
+    }
+
+    .privacy .block-content .tbl-info,
+    .terms .block-content .tbl-info {
+        display: block;
+        margin: 0;
+        border: 0;
+        padding: 10px;
+    }
+
+        .privacy .block-content .tbl-info .tbl-cell,
+        .terms .block-content .tbl-info .tbl-cell {
+            display: block;
+            padding: 0;
+            border: 0;
+        }
+
+            .privacy .block-content .tbl-info .tbl-cell .gt-list-item,
+            .terms .block-content .tbl-info .tbl-cell .gt-list-item {
+                font-size: 14px;
+            }
+
+    .privacy .block-content .gt-list .gt-list-item,
+    .terms .block-content .gt-list .gt-list-item {
+        font-size: 14px;
+    }
+
+    .privacy .block-content .gt-extra-inner h6,
+    .terms .block-content .gt-extra-inner h6 {
+        font-size: 14px;
+    }
+
+    .social-share .block1 .foot-note {
+        top: 0;
+        text-align: center;
+    }
+
+        .social-share .block1 .foot-note a:last-child {
+            margin-right: 0;
+        }
+}
+
+html[lang='zh'] .privacy,
+html[lang='zh'] .terms {
+    font-family: "Noto Sans TC", sans-serif !important;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .social-share .block1 .foot-note {
+        padding-left: 30px;
+    }
+}

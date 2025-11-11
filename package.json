@@ -4,7 +4,7 @@
   "description": "Netlify migration sites",
   "scripts": {
     "start": "cd src && http-serve --proxy http://127.0.0.1:8080/index.html",
-    "build": "cp _headers src && cp _redirects src",
+    "build": "echo 'no build steps required'",
     "netlify": "netlify dev"
   },
   "repository": {
